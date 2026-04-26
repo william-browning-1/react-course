@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>React Basics</title>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+
+      function Counter ({input, setInput}) {
+
+        function addOne () {
+            const output = input + 1;
+            setInput(output)
+        }
+
+        return (
+          <div>
+            ({input===1 ? <button onClick={addOne}>Clicked {input} Time</button> : <button onClick={addOne}>Clicked {input} Times</button>})
+          </div>
+        );
+      }
+
+      function App () {
+        const [input, setInput] = React.useState(0)
+
+        function resetCount () {
+          setInput(0)
+        };
+
+        return (
+          <>
+            <Counter input={input} setInput={setInput} />
+            <Counter input={input} setInput={setInput} />
+            <div> <button onClick={resetCount} >Reset</button></div>
+          </>
+        )
+      }
+
+
+      const container = document.querySelector('.js-container');
+      ReactDOM.createRoot(container).render(<App/>);
+    </script>
+    
+  </body>
+</html>
